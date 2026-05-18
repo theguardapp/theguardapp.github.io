@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07101F">
+<!-- Swap .no-js → .js synchronously so .reveal CSS rules can hide content
+     ONLY when JS is actually available (otherwise everything stays visible). -->
+<script>document.documentElement.classList.replace('no-js','js');</script>
+<title>Page not found — The Guard</title>
+<meta name="description" content="The page you are looking for does not exist on theguardapp.github.io.">
+<meta name="robots" content="noindex">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Page not found — The Guard">
+<meta property="og:description" content="The page you are looking for does not exist on theguardapp.github.io.">
+<meta property="og:image" content="https://theguardapp.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Guard — your device's silent guardian.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://theguardapp.github.io/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* Local-only styles — center the 404 content vertically over the same
+     PremiumDarkGradient + multi-glow atmosphere used on the home hero,
+     so a broken link still feels like part of the same product. */
+  .nf-wrap{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:120px 5% 80px;position:relative;overflow:hidden;text-align:center;
+    background:
+      radial-gradient(ellipse 70% 55% at 25% 25%, rgba(66,165,245,.20), transparent 60%),
+      radial-gradient(ellipse 65% 50% at 80% 75%, rgba(30,159,164,.16), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 55% 50%, rgba(139,92,246,.10), transparent 65%),
+      linear-gradient(160deg, #1A1A2E 0%, #12121A 55%, #0A0A0F 100%);
+  }
+  /* Orbs drift behind the 404 copy with the same screen-blend glow as the home hero. */
+  .nf-wrap .orb{filter:blur(90px);mix-blend-mode:screen}
+  .nf-inner{position:relative;z-index:1;max-width:560px}
+  .nf-code{font-family:'Cormorant Garamond',serif;font-size:clamp(96px,16vw,180px);font-weight:300;line-height:1;color:#fff;letter-spacing:-3px;margin-bottom:14px}
+  .nf-code em{font-style:italic;background:linear-gradient(90deg,#42A5F5 0%,#1E9FA4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .nf-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,40px);font-weight:400;color:#fff;margin-bottom:18px;letter-spacing:-.3px}
+  .nf-sub{font-size:16px;color:rgba(255,255,255,.66);line-height:1.7;margin-bottom:36px}
+  /* Helper-line metadata — a small forensic-style detail. */
+  .nf-meta{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
+    font-size:12px;color:rgba(255,255,255,.42);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:100px;padding:6px 14px;margin-bottom:26px;letter-spacing:.4px;
+  }
+  .nf-meta::before{
+    content:'';width:6px;height:6px;border-radius:50%;
+    background:#EF4444;box-shadow:0 0 10px rgba(239,68,68,.6);
+  }
+  .nf-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+  <section class="nf-wrap">
+    <!-- Decorative palette orbs drifting behind the 404 copy — same
+         set used on the home hero so the not-found page still feels
+         like part of the same product. -->
+    <div class="orb-layer" aria-hidden="true">
+      <span class="orb orb-blue   orb-1"></span>
+      <span class="orb orb-teal   orb-2"></span>
+      <span class="orb orb-violet orb-3"></span>
+      <span class="orb orb-cyan   orb-4"></span>
+    </div>
+    <div class="nf-inner">
+      <img class="mark" src="favicon.svg" alt="The Guard" style="width:64px;height:64px;margin:0 auto 28px;filter:drop-shadow(0 8px 24px rgba(33,150,243,.4))">
+      <!-- Forensic-style status badge — small detail nodding to the
+           app's diagnostics aesthetic without being noisy. -->
+      <div class="nf-meta">ERR_NOT_FOUND · 404</div>
+      <div class="nf-code">4<em>0</em>4</div>
+      <h1 class="nf-title">This page wandered off-grid.</h1>
+      <p class="nf-sub">The address you requested doesn't match anything on this site. It may have moved, been renamed, or never existed in the first place.</p>
+      <div class="nf-actions">
+        <a href="index.html" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to home
+        </a>
+        <a href="mailto:hello@theguardapp.com?subject=Broken%20link%20on%20theguardapp" class="btn btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Report broken link
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

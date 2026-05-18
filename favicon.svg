@@ -1,0 +1,17 @@
+<!-- 1:1 reconstruction of the app's adaptive launcher icon.
+     Source paths copied from app/src/main/res/drawable/ic_launcher_background.xml
+     and ic_launcher_foreground.xml (viewBox 0 0 108 108). The rounded-rect clip
+     mirrors Android's adaptive-icon mask so it renders identically in the browser. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" role="img" aria-label="The Guard">
+  <defs>
+    <clipPath id="mask"><rect width="108" height="108" rx="24" ry="24"/></clipPath>
+  </defs>
+  <g clip-path="url(#mask)">
+    <path fill="#2196F3" d="M0,0h108v108h-108z"/>
+    <path fill="#1565C0" d="M0,0l108,108h-108z"/>
+    <path fill="#FFFFFF" d="M54,20C54,20 24,34 24,38C24,62 36,80 54,86C72,80 84,62 84,38C84,34 54,20 54,20Z"/>
+    <path fill="#1976D2" d="M54,26C54,26 30,38 30,41C30,60 40,75 54,80C68,75 78,60 78,41C78,38 54,26 54,26Z"/>
+    <path fill="#FFFFFF" d="M54,36C50,36 46,40 46,44L46,48C44,48 42,50 42,53L42,64C42,67 44,69 47,69L61,69C64,69 66,67 66,64L66,53C66,50 64,48 62,48L62,44C62,40 58,36 54,36ZM54,40C56,40 58,42 58,44L58,48L50,48L50,44C50,42 52,40 54,40Z"/>
+    <path fill="#1976D2" d="M54,52C52,52 50,54 50,56C50,58 51,59 53,60L53,64L55,64L55,60C57,59 58,58 58,56C58,54 56,52 54,52Z"/>
+  </g>
+</svg>

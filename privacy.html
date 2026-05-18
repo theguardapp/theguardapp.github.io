@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07101F">
+<!-- Swap .no-js → .js synchronously so .reveal CSS rules can hide content
+     ONLY when JS is actually available (otherwise everything stays visible). -->
+<script>document.documentElement.classList.replace('no-js','js');</script>
+<title>Privacy Policy — The Guard</title>
+<meta name="description" content="The Guard's privacy policy and terms of use. Local-first by design — no telemetry, no analytics, no third-party data sharing.">
+<link rel="canonical" href="https://theguardapp.github.io/privacy.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacy Policy — The Guard">
+<meta property="og:description" content="Local-first by design — no telemetry, no analytics, no third-party data sharing.">
+<meta property="og:url" content="https://theguardapp.github.io/privacy.html">
+<meta property="og:image" content="https://theguardapp.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Guard — your device's silent guardian. Local-first Android security, analytics & forensic recovery.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Privacy Policy — The Guard">
+<meta name="twitter:description" content="Local-first by design — no telemetry, no analytics, no third-party data sharing.">
+<meta name="twitter:image" content="https://theguardapp.github.io/assets/og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Privacy Policy — The Guard",
+  "url":"https://theguardapp.github.io/privacy.html",
+  "description":"The Guard's privacy policy and terms of use. Local-first by design — no telemetry, no analytics, no third-party data sharing.",
+  "isPartOf":{"@type":"WebSite","name":"The Guard","url":"https://theguardapp.github.io/"},
+  "about":{"@type":"Thing","name":"Privacy policy and terms of use"},
+  "publisher":{"@type":"Organization","name":"The Guard","url":"https://theguardapp.github.io/"}
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- NAV (shared) -->
+<nav id="nav" aria-label="Primary">
+  <a href="index.html#hero" class="nav-brand">
+    <img class="mark" src="favicon.svg" alt="" aria-hidden="true">
+    The Guard
+  </a>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="index.html#use-cases">For Teams</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="index.html#download" class="nav-cta">Get the App</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <!-- Decorative palette orbs drifting behind the page hero copy. -->
+  <div class="orb-layer" aria-hidden="true">
+    <span class="orb orb-blue   orb-1"></span>
+    <span class="orb orb-teal   orb-2"></span>
+    <span class="orb orb-violet orb-3"></span>
+    <span class="orb orb-cyan   orb-4"></span>
+  </div>
+  <div class="container">
+    <span class="section-tag">Legal</span>
+    <h1>Privacy Policy &amp; <em>Terms of Use</em></h1>
+    <p>Plain language. No surprises. The Guard is local-first — these documents simply describe what that means in practice.</p>
+  </div>
+</section>
+
+<!-- PROSE -->
+<article class="prose">
+  <p class="meta"><strong>Last updated:</strong> January 2026 · This policy covers The Guard mobile application and the website at theguardapp.github.io.</p>
+
+  <h2>Privacy Policy</h2>
+
+  <h3>1. Summary in one paragraph</h3>
+  <p>The Guard is an Android application that runs entirely on your device. We do not operate any backend service that receives, stores, or processes data from the app. We have no analytics SDKs, no advertising SDKs, no crash-reporting service, and no telemetry of any kind. The app needs no account, and we never ask for one.</p>
+
+  <h3>2. What the app reads on your device</h3>
+  <p>To deliver its features, The Guard reads information from your device locally. Depending on which modules you enable, this can include:</p>
+  <ul>
+    <li>Process and package metadata (running apps, installed apps, permissions held).</li>
+    <li>System sensors (CPU and battery temperature, charge level, charge cycles).</li>
+    <li>Storage metadata and — when you initiate a forensic scan — raw block-level data from internal storage or an attached OTG device.</li>
+    <li>Network status indicators (connection type, signal level — never traffic content).</li>
+  </ul>
+  <p>All of this stays on the device. It is processed in-memory or written to the app's private storage area, which is sandboxed by Android and inaccessible to other apps.</p>
+
+  <h3>3. What we collect (nothing)</h3>
+  <p>We do not collect, transmit, or otherwise receive any of the data the app reads. There is no remote server we operate that the app talks to. You can verify this by inspecting your device's network traffic while the app is running — you will see no outbound connections to our infrastructure, because we don't have any.</p>
+
+  <h3>4. Permissions explained</h3>
+  <p>Android requires us to request certain permissions to provide functionality. We only request what is strictly necessary, and we explain each one in-app before it is used:</p>
+  <ul>
+    <li><strong>Storage / Media access</strong> — to read storage you explicitly select for forensic recovery.</li>
+    <li><strong>USB host access</strong> — to read OTG-attached devices when you connect one for analysis.</li>
+    <li><strong>Usage stats</strong> — to power performance and battery analytics.</li>
+    <li><strong>Notifications</strong> — to surface security and thermal alerts.</li>
+  </ul>
+  <p>You can revoke any permission at any time via Android system settings; the affected feature will simply stop working until the permission is restored.</p>
+
+  <h3>5. Sharing and exporting data</h3>
+  <p>You may export reports, recovered files, or scan results from the app. When you do, you choose where they go (local storage, a connected USB drive, a sharing target you select). The Guard's default share chooser is filtered to exclude known cloud-storage providers so that local-only sharing remains the obvious path; you can still choose any installed app explicitly. We never share data on your behalf.</p>
+
+  <h3>6. Children's privacy</h3>
+  <p>The Guard is a general-purpose utility intended for adults and corporate environments. We do not knowingly target children, and because we do not collect any data, we cannot identify users by age.</p>
+
+  <h3>7. Changes to this policy</h3>
+  <p>If we ever materially change this policy, we will update the "Last updated" date at the top of this page and, where reasonable, surface a notice in-app on next launch. Because we have no user accounts and no contact list, this page is the canonical source.</p>
+
+  <h3>8. Contact</h3>
+  <p>For privacy questions write to <a href="mailto:hello@theguardapp.com">hello@theguardapp.com</a>. For security issues, please use <a href="mailto:security@theguardapp.com">security@theguardapp.com</a>.</p>
+
+  <h2 id="terms">Terms of Use</h2>
+
+  <h3>1. The app is provided as-is</h3>
+  <p>The Guard is provided free of charge, without warranty of any kind, express or implied. While we work hard to make it accurate and reliable, we cannot guarantee that every reading, alert, or recovered artifact will be free of error. You are responsible for verifying anything the app reports before acting on it in a forensic, legal, or operational context.</p>
+
+  <h3>2. Forensic and recovery features</h3>
+  <p>The forensic-recovery module is intended for use on devices and storage media you own or are explicitly authorised to examine. You agree to comply with all applicable laws when using the app — including, but not limited to, computer-misuse, data-protection, and evidence-handling legislation in your jurisdiction. We provide tooling; lawful use is your responsibility.</p>
+
+  <h3>3. Software write-blocker</h3>
+  <p>The OTG write-blocker is a software-level safeguard. While we believe it is robust against accidental writes, no software write-blocker can fully match a hardware device. For evidentiary work where chain of custody is critical, we strongly recommend using the app in conjunction with a hardware write-blocker.</p>
+
+  <h3>4. Intellectual property</h3>
+  <p>The Guard application, its source code, brand, and visual design are the property of the project's authors. The app is closed-source and distributed under the terms of its end-user licence. You may use the app freely on devices you own; you may not redistribute, repackage, or reverse-engineer it except where mandated by applicable law.</p>
+
+  <h3>5. Limitation of liability</h3>
+  <p>To the maximum extent permitted by law, in no event will the authors of The Guard be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data, profits, or goodwill arising out of or related to the use of the app. Your sole remedy if you are dissatisfied is to stop using the app.</p>
+
+  <h3>6. Governing law</h3>
+  <p>These terms are governed by the laws of the jurisdiction in which the project's authors are resident, without regard to conflict-of-laws principles. Any disputes will be resolved in the competent courts of that jurisdiction.</p>
+
+  <h3>7. Updates to these terms</h3>
+  <p>We may update these terms from time to time. The "Last updated" date at the top of this page reflects the most recent revision. Continued use of the app after a revision constitutes acceptance of the updated terms.</p>
+</article>
+
+</main>
+
+<!-- FOOTER (shared) -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html#hero" class="footer-brand">
+        <img class="mark" src="favicon.svg" alt="" aria-hidden="true">
+        The Guard
+      </a>
+      <p class="footer-tagline">Professional-grade Android device security, performance analytics, and forensic data recovery — operating entirely on-device.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Product</h3>
+      <ul>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#use-cases">For teams</a></li>
+        <li><a href="index.html#download">Download</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="mailto:security@theguardapp.com">Security</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="privacy.html#terms">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© <span id="year">2026</span> The Guard. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  // Sticky-nav shadow
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile menu
+  const toggle = document.querySelector('.nav-toggle');
+  const links  = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

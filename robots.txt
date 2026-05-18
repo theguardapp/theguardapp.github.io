@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theguardapp.github.io/sitemap.xml
