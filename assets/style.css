@@ -465,7 +465,7 @@ footer{background:var(--navy);padding:56px 5% 32px;border-top:1px solid rgba(255
 .footer-tagline{font-size:14px;line-height:1.6;color:rgba(255,255,255,.7);max-width:320px}
 .footer-col h3{
   font-family:'Inter',sans-serif;
-  font-size:12px;font-weight:600;color:rgba(255,255,255,.7);
+  font-size:12px;font-weight:600;color:var(--accent);
   letter-spacing:1.2px;text-transform:uppercase;margin-bottom:18px;
 }
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
