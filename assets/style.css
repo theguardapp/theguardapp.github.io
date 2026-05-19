@@ -22,6 +22,9 @@ body{
 img,svg{display:block;max-width:100%}
 a{color:inherit}
 
+/* Clip transformed children (spotlight slide-ins, orbs) so they can't push doc width past viewport. */
+section{overflow-x:clip}
+
 /* Skip link */
 .skip-link{
   position:absolute;top:-40px;left:8px;
