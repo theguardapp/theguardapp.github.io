@@ -104,8 +104,7 @@ section{padding:110px 5%}
   max-width:620px;margin:16px auto 0;
 }
 
-/* HERO — mirrors the app's PremiumDarkGradient (#1A1A2E → #12121A → #0A0A0F)
-   with blue/teal/violet glow ellipses; capped by a wave into --mist. */
+/* HERO */
 #hero{
   min-height:100vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -119,7 +118,6 @@ section{padding:110px 5%}
   overflow:hidden;text-align:center;
 }
 
-/* Wave into #features (--mist). */
 .hero-wave{
   position:absolute;left:0;right:0;bottom:-1px;
   width:100%;height:clamp(110px,14vw,200px);
@@ -138,16 +136,12 @@ section{padding:110px 5%}
   background:rgba(255,255,255,.06);
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.14);
+  border:none;
   border-radius:100px;padding:7px 18px;
   font-size:13px;font-weight:500;color:rgba(255,255,255,.78);
   margin-bottom:28px;animation:fadeUp .55s .03s ease both;
 }
-.hero-eyebrow .pulse{
-  width:8px;height:8px;border-radius:50%;
-  background:#1E9FA4;box-shadow:0 0 10px rgba(30,159,164,.85);
-  animation:pulse 2.4s ease-in-out infinite;
-}
+.hero-eyebrow .pulse{display:none}
 @keyframes pulse{
   0%,100%{opacity:1;transform:scale(1)}
   50%{opacity:.55;transform:scale(1.4)}
@@ -185,7 +179,6 @@ section{padding:110px 5%}
   border:1px solid transparent;cursor:pointer;
   font-family:inherit;
 }
-/* Primary CTA = white pill; ghost CTA = translucent outline. */
 .btn-primary{background:#fff;color:var(--navy);box-shadow:0 4px 24px rgba(0,0,0,.28)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
 .btn-ghost{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.22)}
@@ -208,7 +201,7 @@ section{padding:110px 5%}
   display:inline-flex;align-items:center;gap:8px;
   font-size:13px;color:rgba(255,255,255,.65);font-weight:500;
 }
-.trust-pill svg{width:16px;height:16px;color:#1E9FA4}
+.trust-pill svg{width:16px;height:16px;color:#FF8C00}
 
 /* FEATURES */
 #features{background:var(--mist)}
@@ -233,7 +226,7 @@ section{padding:110px 5%}
 .feat-title{font-size:17px;font-weight:600;color:var(--navy);margin-bottom:10px}
 .feat-desc{font-size:14.5px;line-height:1.65;color:var(--slate-d)}
 
-/* SPOTLIGHT — alternating image + copy rows. */
+/* SPOTLIGHT */
 #spotlight{background:var(--white)}
 .spotlight-row{
   display:grid;grid-template-columns:1fr 1fr;
@@ -241,30 +234,23 @@ section{padding:110px 5%}
   margin-top:96px;
 }
 .spotlight-row:first-of-type{margin-top:96px}
-/* `.reverse` swaps which side the screenshot lives on, on desktop. */
 .spotlight-row.reverse .spotlight-img{order:2}
 .spotlight-img{
   position:relative;
   aspect-ratio:9/19.5;background:var(--navy);
   border-radius:32px;padding:10px;
   box-shadow:var(--shadow-lg);
-  border:1px solid rgba(15,23,42,.1);
   max-width:340px;width:100%;margin:0 auto;
   overflow:hidden;
   transition:transform .35s cubic-bezier(.22,1,.36,1);
 }
 .spotlight-img:hover{transform:translateY(-4px)}
-/* Screenshot wrapped in <picture> for AVIF/WebP/JPEG fallback. */
 .spotlight-img > picture{display:block;width:100%;height:100%}
 .spotlight-img > picture > img{
   width:100%;height:100%;border-radius:24px;
   object-fit:cover;display:block;
   background:linear-gradient(135deg,rgba(33,150,243,.15),rgba(21,101,192,.05)),var(--mist);
 }
-
-/* DUAL-PHONE — two overlapping rotated frames.
-   Each phone = 56% of parent width @ 9:19.5; parent reserves 1/1.7 so the
-   rotated frames don't escape the section above. */
 .spotlight-img--pair{
   background:transparent;
   border:none;padding:0;box-shadow:none;
@@ -284,24 +270,13 @@ section{padding:110px 5%}
   overflow:hidden;
   transition:transform .4s cubic-bezier(.22,1,.36,1);
 }
-.spotlight-img--pair .phone-frame picture{
-  display:block;width:100%;height:100%;
-}
+.spotlight-img--pair .phone-frame picture{display:block;width:100%;height:100%}
 .spotlight-img--pair .phone-frame img{
   width:100%;height:100%;
   border-radius:24px;object-fit:cover;display:block;
 }
-.spotlight-img--pair .phone-back{
-  top:0;left:0;
-  transform:rotate(-7deg);
-  z-index:1;
-  opacity:.92;
-}
-.spotlight-img--pair .phone-front{
-  bottom:0;right:0;
-  transform:rotate(5deg);
-  z-index:2;
-}
+.spotlight-img--pair .phone-back{top:0;left:0;transform:rotate(-7deg);z-index:1;opacity:.92}
+.spotlight-img--pair .phone-front{bottom:0;right:0;transform:rotate(5deg);z-index:2}
 .spotlight-img--pair:hover .phone-back  {transform:rotate(-7deg) translateY(-5px)}
 .spotlight-img--pair:hover .phone-front {transform:rotate(5deg)  translateY(-5px)}
 .spotlight-copy{max-width:520px}
@@ -319,21 +294,15 @@ section{padding:110px 5%}
   margin-bottom:16px;
 }
 .spotlight-title em{font-style:italic;color:var(--primary)}
-.spotlight-desc{
-  font-size:15.5px;line-height:1.75;
-  color:var(--slate-d);margin-bottom:20px;
-}
+.spotlight-desc{font-size:15.5px;line-height:1.75;color:var(--slate-d);margin-bottom:20px}
 .spotlight-list{list-style:none;display:flex;flex-direction:column;gap:10px}
 .spotlight-list li{
   display:flex;align-items:flex-start;gap:10px;
   font-size:14.5px;color:var(--slate-d);line-height:1.6;
 }
-.spotlight-list svg{
-  width:18px;height:18px;color:var(--primary);
-  flex-shrink:0;margin-top:2px;
-}
+.spotlight-list svg{width:18px;height:18px;color:#FF8C00;flex-shrink:0;margin-top:2px}
 
-/* FAQ — button + grid-template-rows accordion. */
+/* FAQ */
 #faq{background:var(--mist)}
 .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
 .faq-item{
@@ -357,9 +326,7 @@ section{padding:110px 5%}
   transition:transform .35s cubic-bezier(.65,0,.35,1);
 }
 .faq-item[data-open] .faq-q::after{transform:rotate(180deg)}
-.faq-answer{
-  font-size:15px;line-height:1.75;color:var(--slate-d);
-}
+.faq-answer{font-size:15px;line-height:1.75;color:var(--slate-d)}
 
 /* USE CASES */
 #use-cases{background:var(--mist)}
@@ -402,14 +369,8 @@ section{padding:110px 5%}
   margin-bottom:18px;letter-spacing:-.5px;
 }
 .download-title em{font-style:italic;color:var(--light-blue)}
-.download-sub{
-  font-size:16px;color:rgba(255,255,255,.6);
-  max-width:520px;margin:0 auto 40px;line-height:1.7;
-}
-.download-note{
-  margin-top:22px;font-size:13px;color:rgba(255,255,255,.4);
-  display:inline-flex;align-items:center;gap:10px;
-}
+.download-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 40px;line-height:1.7}
+.download-note{margin-top:22px;font-size:13px;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:10px}
 .download-note .pulse{
   width:7px;height:7px;border-radius:50%;
   background:var(--teal);box-shadow:0 0 8px var(--teal);
@@ -442,18 +403,12 @@ section{padding:110px 5%}
 }
 .contact-card-icon svg{width:22px;height:22px}
 .contact-card-text{display:flex;flex-direction:column;gap:2px}
-.contact-card-label{
-  font-size:12px;font-weight:500;color:var(--slate);
-  letter-spacing:.4px;text-transform:uppercase;
-}
+.contact-card-label{font-size:12px;font-weight:500;color:var(--slate);letter-spacing:.4px;text-transform:uppercase}
 .contact-card-value{font-size:15px;font-weight:600;color:var(--navy)}
 
 /* FOOTER */
 footer{background:var(--navy);padding:56px 5% 32px;border-top:1px solid rgba(255,255,255,.06)}
-.footer-grid{
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
-  max-width:1180px;margin:0 auto 40px;
-}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1180px;margin:0 auto 40px}
 .footer-brand{
   display:flex;align-items:center;gap:12px;
   font-family:'Cormorant Garamond',serif;
@@ -461,7 +416,6 @@ footer{background:var(--navy);padding:56px 5% 32px;border-top:1px solid rgba(255
   text-decoration:none;margin-bottom:14px;
 }
 .footer-brand .mark{width:32px;height:32px;border-radius:8px}
-/* Footer alpha values tuned for WCAG AA contrast on #07101F. */
 .footer-tagline{font-size:14px;line-height:1.6;color:rgba(255,255,255,.7);max-width:320px}
 .footer-col h3{
   font-family:'Inter',sans-serif;
@@ -469,10 +423,7 @@ footer{background:var(--navy);padding:56px 5% 32px;border-top:1px solid rgba(255
   letter-spacing:1.2px;text-transform:uppercase;margin-bottom:18px;
 }
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-col a{
-  font-size:14px;color:rgba(255,255,255,.78);
-  text-decoration:none;transition:color .2s;
-}
+.footer-col a{font-size:14px;color:rgba(255,255,255,.78);text-decoration:none;transition:color .2s}
 .footer-col a:hover{color:#fff}
 .footer-bottom{
   max-width:1180px;margin:0 auto;
@@ -481,11 +432,10 @@ footer{background:var(--navy);padding:56px 5% 32px;border-top:1px solid rgba(255
 }
 .footer-copy{font-size:13px;color:rgba(255,255,255,.65)}
 
-/* PAGE HERO — shorter variant of #hero used on about/privacy. */
+/* PAGE HERO */
 .page-hero{
   position:relative;overflow:hidden;
-  padding:160px 5% 110px;
-  text-align:center;
+  padding:160px 5% 110px;text-align:center;
   background:
     radial-gradient(ellipse 70% 55% at 25% 25%, rgba(66,165,245,.20), transparent 60%),
     radial-gradient(ellipse 65% 50% at 80% 75%, rgba(30,159,164,.16), transparent 60%),
@@ -500,8 +450,7 @@ footer{background:var(--navy);padding:56px 5% 32px;border-top:1px solid rgba(255
   border:1px solid rgba(255,255,255,.14);
   border-radius:100px;padding:7px 18px;
   font-size:12px;font-weight:500;color:rgba(255,255,255,.78);
-  letter-spacing:1.6px;text-transform:uppercase;
-  margin-bottom:24px;
+  letter-spacing:1.6px;text-transform:uppercase;margin-bottom:24px;
 }
 .page-hero h1{
   font-family:'Cormorant Garamond',serif;
@@ -515,26 +464,16 @@ footer{background:var(--navy);padding:56px 5% 32px;border-top:1px solid rgba(255
   background:linear-gradient(90deg,#42A5F5 0%,#1E9FA4 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.page-hero p{
-  font-size:17px;color:rgba(255,255,255,.66);
-  max-width:640px;margin:24px auto 0;line-height:1.7;
-}
+.page-hero p{font-size:17px;color:rgba(255,255,255,.66);max-width:640px;margin:24px auto 0;line-height:1.7}
 
-.prose{
-  max-width:780px;margin:0 auto;
-  padding:90px 5%;font-size:16px;line-height:1.8;color:var(--slate-d);
-}
+.prose{max-width:780px;margin:0 auto;padding:90px 5%;font-size:16px;line-height:1.8;color:var(--slate-d)}
 .prose h2{
   font-family:'Cormorant Garamond',serif;
   font-size:32px;font-weight:600;color:var(--navy);
   margin:56px 0 18px;letter-spacing:-.3px;
 }
 .prose h2:first-child{margin-top:0}
-.prose h3{
-  font-family:'Inter',sans-serif;
-  font-size:18px;font-weight:600;color:var(--navy);
-  margin:28px 0 10px;
-}
+.prose h3{font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:var(--navy);margin:28px 0 10px}
 .prose p{margin-bottom:16px}
 .prose ul{margin:0 0 16px 22px}
 .prose li{margin-bottom:8px}
@@ -545,49 +484,31 @@ footer{background:var(--navy);padding:56px 5% 32px;border-top:1px solid rgba(255
   font-size:13px;color:var(--slate-d);
   padding:14px 18px;background:var(--mist);
   border-left:3px solid var(--primary);
-  border-radius:0 var(--r-sm) var(--r-sm) 0;
-  margin-bottom:32px;
+  border-radius:0 var(--r-sm) var(--r-sm) 0;margin-bottom:32px;
 }
 
-/* About-specific pillar cards */
-.principles{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-  max-width:1180px;margin:0 auto;padding:0 5% 90px;
-}
-.principle{
-  background:var(--white);border:1px solid var(--line);
-  border-radius:var(--r);padding:32px 28px;
-  transition:transform .25s,box-shadow .3s;
-}
+/* About pillar cards */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1180px;margin:0 auto;padding:0 5% 90px}
+.principle{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;transition:transform .25s,box-shadow .3s}
 .principle:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.principle h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;font-weight:600;color:var(--navy);
-  margin:18px 0 10px;letter-spacing:-.3px;
-}
+.principle h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--navy);margin:18px 0 10px;letter-spacing:-.3px}
 .principle p{font-size:14.5px;line-height:1.65;color:var(--slate-d)}
 
-/* DECORATIVE ORBS — drifting gradient blobs behind section content. */
-.orb-layer{
-  position:absolute;inset:0;overflow:hidden;
-  pointer-events:none;z-index:0;
-}
-/* Section creates the stacking context that lets .orb-layer sit behind content;
-   .hero-wave is excluded so it can keep its own absolute placement. */
+/* DECORATIVE ORBS — palette: blue · orange · white · black */
+.orb-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 section{position:relative}
 section > *:not(.orb-layer):not(.hero-wave){position:relative;z-index:1}
 
 .orb{
   position:absolute;border-radius:50%;
-  filter:blur(70px);
-  will-change:transform;
+  filter:blur(70px);will-change:transform;
   animation:orbDrift 18s ease-in-out infinite;
 }
 .orb-blue  {background:radial-gradient(circle,#2196F3 0%,transparent 65%);opacity:.42}
 .orb-deep  {background:radial-gradient(circle,#1565C0 0%,transparent 65%);opacity:.38}
-.orb-cyan  {background:radial-gradient(circle,#6FBCFF 0%,transparent 65%);opacity:.45}
-.orb-teal  {background:radial-gradient(circle,#1E9FA4 0%,transparent 65%);opacity:.40}
-.orb-violet{background:radial-gradient(circle,#8B5CF6 0%,transparent 65%);opacity:.34}
+.orb-teal  {background:radial-gradient(circle,#FF8C00 0%,transparent 65%);opacity:.40}
+.orb-violet{background:radial-gradient(circle,#FFFFFF 0%,transparent 65%);opacity:.28}
+.orb-cyan  {background:radial-gradient(circle,#111111 0%,transparent 65%);opacity:.55}
 .orb-white {background:radial-gradient(circle,#FFFFFF 0%,transparent 60%);opacity:.45}
 .orb-pearl {background:radial-gradient(circle,#FFE4F1 0%,transparent 65%);opacity:.30}
 
@@ -602,18 +523,16 @@ section > *:not(.orb-layer):not(.hero-wave){position:relative;z-index:1}
   66%    {transform:translate3d(-50px,40px,0) scale(.92)}
 }
 
-/* On dark sections, screen-blend makes overlapping orbs glow additively. */
 #hero .orb,#download .orb,.page-hero .orb{filter:blur(90px);mix-blend-mode:screen}
 
-/* SCROLL-REVEAL — scoped to `.js` so non-JS visitors see content immediately. */
+/* SCROLL-REVEAL */
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(22px)}
   to{opacity:1;transform:translateY(0)}
 }
 .js .reveal{
   opacity:0;transform:translateY(28px);
-  transition:opacity .9s cubic-bezier(.22,1,.36,1),
-             transform .9s cubic-bezier(.22,1,.36,1);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);
 }
 .js .reveal.visible{opacity:1;transform:translateY(0)}
 .js .reveal.d1{transition-delay:.08s}
@@ -621,13 +540,11 @@ section > *:not(.orb-layer):not(.hero-wave){position:relative;z-index:1}
 .js .reveal.d3{transition-delay:.24s}
 .js .reveal.d4{transition-delay:.32s}
 
-/* Stagger grid children when the grid itself has .reveal.visible. */
 .js .features-grid.reveal .feat-card,
 .js .use-grid.reveal .use-card,
 .js .principles.reveal .principle{
   opacity:0;transform:translateY(28px);
-  transition:opacity .8s cubic-bezier(.22,1,.36,1),
-             transform .8s cubic-bezier(.22,1,.36,1);
+  transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);
 }
 .features-grid.reveal.visible .feat-card:nth-child(1),
 .use-grid.reveal.visible .use-card:nth-child(1),
@@ -645,50 +562,30 @@ section > *:not(.orb-layer):not(.hero-wave){position:relative;z-index:1}
 .use-grid.reveal.visible .use-card,
 .principles.reveal.visible .principle{opacity:1;transform:translateY(0)}
 
-/* SPOTLIGHT slide-in — driven by .spotlight-row.visible. */
+/* SPOTLIGHT slide-in */
 .spotlight-row .spotlight-img{
   opacity:0;transform:translateX(-60px) scale(.96);
-  transition:opacity 1s cubic-bezier(.22,1,.36,1) .1s,
-             transform 1s cubic-bezier(.22,1,.36,1) .1s;
+  transition:opacity 1s cubic-bezier(.22,1,.36,1) .1s,transform 1s cubic-bezier(.22,1,.36,1) .1s;
 }
 .spotlight-row.reverse .spotlight-img{transform:translateX(60px) scale(.96)}
 .spotlight-row.visible .spotlight-img{opacity:1;transform:translateX(0) scale(1)}
-
 .spotlight-row .spotlight-copy{
   opacity:0;transform:translateX(60px);
-  transition:opacity 1s cubic-bezier(.22,1,.36,1) .25s,
-             transform 1s cubic-bezier(.22,1,.36,1) .25s;
+  transition:opacity 1s cubic-bezier(.22,1,.36,1) .25s,transform 1s cubic-bezier(.22,1,.36,1) .25s;
 }
 .spotlight-row.reverse .spotlight-copy{transform:translateX(-60px)}
 .spotlight-row.visible .spotlight-copy{opacity:1;transform:translateX(0)}
 
-/* FAQ accordion — grid-template-rows tween, toggled by [data-open]. */
-.faq-answer-wrap{
-  display:grid;grid-template-rows:0fr;
-  transition:grid-template-rows .45s cubic-bezier(.65,0,.35,1);
-}
+/* FAQ accordion */
+.faq-answer-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.65,0,.35,1)}
 .faq-item[data-open] .faq-answer-wrap{grid-template-rows:1fr}
-.faq-answer-wrap > .faq-answer{
-  min-height:0;overflow:hidden;
-  padding:0 26px;
-  transition:padding .45s cubic-bezier(.65,0,.35,1);
-}
+.faq-answer-wrap > .faq-answer{min-height:0;overflow:hidden;padding:0 26px;transition:padding .45s cubic-bezier(.65,0,.35,1)}
 .faq-item[data-open] .faq-answer-wrap > .faq-answer{padding:0 26px 22px}
 
-/* Reduced motion — neutralise decorative motion. */
+/* Reduced motion */
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-    scroll-behavior:auto !important;
-  }
-  .reveal,
-  .features-grid .feat-card,
-  .use-grid .use-card,
-  .principles .principle,
-  .spotlight-row .spotlight-img,
-  .spotlight-row .spotlight-copy{opacity:1;transform:none}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal,.features-grid .feat-card,.use-grid .use-card,.principles .principle,.spotlight-row .spotlight-img,.spotlight-row .spotlight-copy{opacity:1;transform:none}
   .orb{display:none}
 }
 
@@ -697,20 +594,14 @@ section > *:not(.orb-layer):not(.hero-wave){position:relative;z-index:1}
   .features-grid,.use-grid,.principles{grid-template-columns:1fr 1fr}
   .contact-grid{grid-template-columns:1fr;gap:48px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
-  /* Spotlight rows stack with the screenshot on top, regardless of .reverse. */
   .spotlight-row,.spotlight-row.reverse{grid-template-columns:1fr;gap:40px;margin-top:72px}
-  .spotlight-row .spotlight-img,
-  .spotlight-row.reverse .spotlight-img{order:0;max-width:280px}
-  /* Dual-phone pairs need a touch more room so both phones stay legible. */
-  .spotlight-row .spotlight-img--pair,
-  .spotlight-row.reverse .spotlight-img--pair{max-width:340px}
+  .spotlight-row .spotlight-img,.spotlight-row.reverse .spotlight-img{order:0;max-width:280px}
+  .spotlight-row .spotlight-img--pair,.spotlight-row.reverse .spotlight-img--pair{max-width:340px}
   .spotlight-copy{max-width:none}
 }
 @media (max-width:640px){
   section{padding:80px 5%}
   .features-grid,.use-grid,.principles{grid-template-columns:1fr}
-  /* Mobile drop-down nav. Default = dark glass (matches the hero behind it);
-     when nav.scrolled fires it flips to the light theme to match the body. */
   .nav-links{
     display:none;position:fixed;top:68px;left:0;right:0;
     background:rgba(10,10,20,.92);
@@ -720,55 +611,35 @@ section > *:not(.orb-layer):not(.hero-wave){position:relative;z-index:1}
     flex-direction:column;align-items:stretch;gap:0;
     padding:8px 0;box-shadow:0 8px 24px rgba(0,0,0,.4);
   }
-  nav.scrolled .nav-links{
-    background:rgba(255,255,255,.96);
-    border-bottom-color:var(--line);
-    box-shadow:0 8px 24px rgba(15,23,42,.06);
-  }
+  nav.scrolled .nav-links{background:rgba(255,255,255,.96);border-bottom-color:var(--line);box-shadow:0 8px 24px rgba(15,23,42,.06)}
   .nav-links.open{display:flex}
   .nav-links li{padding:0}
-  .nav-links a{
-    display:block;padding:14px 24px;font-size:15px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    color:rgba(255,255,255,.85);
-  }
-  nav.scrolled .nav-links a{
-    border-bottom-color:var(--line);
-    color:var(--slate-d);
-  }
+  .nav-links a{display:block;padding:14px 24px;font-size:15px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+  nav.scrolled .nav-links a{border-bottom-color:var(--line);color:var(--slate-d)}
   .nav-links a:last-child{border-bottom:none}
-  .nav-links .nav-cta{
-    margin:12px 24px;border-radius:var(--r-sm);
-    text-align:center;
-  }
+  .nav-links .nav-cta{margin:12px 24px;border-radius:var(--r-sm);text-align:center}
   .nav-toggle{display:flex;align-items:center;justify-content:center}
+
+  /* Footer — brand centred, columns left-aligned */
   .footer-grid{grid-template-columns:1fr;gap:32px;text-align:center}
   .footer-brand{justify-content:center}
   .footer-tagline{margin:0 auto}
+  .footer-col{text-align:left}
+  .footer-col h3{text-align:left}
+  .footer-col ul{align-items:flex-start}
   .footer-bottom{flex-direction:column;text-align:center}
 
-  /* ── Hero polish for phones */
+  /* Hero polish for phones */
   #hero{padding:108px 4% 200px}
   section{padding:80px 4%}
-  .hero-eyebrow{
-    /* Allow the eyebrow tagline to wrap to two lines instead of overflowing.
-       Pill-shape stays clean because line-height stays tight. */
-    white-space:normal;text-align:center;line-height:1.5;
-    padding:8px 16px;font-size:12px;
-    max-width:calc(100% - 8px);
-  }
+  .hero-eyebrow{white-space:normal;text-align:center;line-height:1.5;padding:8px 16px;font-size:12px;max-width:calc(100% - 8px)}
   .hero-title{font-size:clamp(40px,9.5vw,68px);letter-spacing:-.5px}
   .hero-sub{font-size:15px}
-  /* Stack CTAs full-width so neither button gets clipped on narrow phones. */
   .hero-actions{flex-direction:column;width:100%;gap:10px;margin-top:32px}
   .hero-actions .btn{width:100%;justify-content:center}
-  /* Trust strip — single-column on narrow screens reads cleanly and prevents
-     pills from being clipped at the right edge. */
   .trust-strip{margin-top:48px;padding-top:28px;gap:12px;flex-direction:column;align-items:center}
   .trust-pill{font-size:12.5px}
-  /* Page-hero (about/privacy) gets the same tighter padding as #hero. */
   .page-hero{padding:108px 4% 80px}
-  /* 404 wrap padding compressed; CTAs stacked full-width. */
   .nf-wrap{padding:104px 5% 64px}
   .nf-actions{flex-direction:column;width:100%}
   .nf-actions .btn{width:100%;justify-content:center}
