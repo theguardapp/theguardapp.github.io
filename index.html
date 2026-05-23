@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#07101F">
-<!-- Swap .no-js → .js synchronously so .reveal CSS rules can hide content
-     ONLY when JS is actually available (otherwise everything stays visible). -->
 <script>document.documentElement.classList.replace('no-js','js');</script>
 <title>The Guard — Professional Device Security & Health Platform</title>
 <meta name="description" content="Local-first Android security, performance analytics, and forensic-grade data recovery. Zero telemetry. Zero subscriptions.">
@@ -29,6 +27,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+
+<!-- Overrides: orb palette + mobile footer alignment -->
+<style>
+  /* Orb colour overrides: blue · orange · white · black */
+  .orb-blue   { background: radial-gradient(circle, rgba(30, 100, 255, 0.55) 0%, transparent 70%); }
+  .orb-teal   { background: radial-gradient(circle, rgba(255, 130, 20, 0.50) 0%, transparent 70%); }
+  .orb-violet { background: radial-gradient(circle, rgba(255, 255, 255, 0.30) 0%, transparent 70%); }
+  .orb-cyan   { background: radial-gradient(circle, rgba(10, 10, 10, 0.60) 0%, transparent 70%); }
+
+  /* Footer columns: left-align on mobile */
+  @media (max-width: 768px) {
+    .footer-col,
+    .footer-col h3,
+    .footer-col ul,
+    .footer-col ul li,
+    .footer-col ul li a {
+      text-align: left;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  }
+</style>
 
 <script type="application/ld+json">
 {
@@ -69,10 +89,6 @@
 
 <!-- HERO -->
 <section id="hero">
-  <!-- Decorative palette orbs drifting behind the hero copy.
-       Colors echo the app's accent palette: blue (Primary), teal
-       (BannerHeader accent), and violet (GlowPurple) over the dark
-       PremiumDarkGradient background. -->
   <div class="orb-layer" aria-hidden="true">
     <span class="orb orb-blue   orb-1"></span>
     <span class="orb orb-teal   orb-2"></span>
@@ -80,9 +96,9 @@
     <span class="orb orb-cyan   orb-4"></span>
   </div>
   <img class="hero-mark" src="favicon.svg" alt="The Guard logo">
-  <div class="hero-eyebrow"><span class="pulse" aria-hidden="true"></span> Built for clarity. Engineered for trust.</div>
+  <div class="hero-eyebrow">Built for clarity. Engineered for trust.</div>
   <h1 class="hero-title">Your device's <em>silent guardian</em></h1>
-  <p class="hero-sub">A professional-grade Android platform combining real-time security monitoring, deep performance analytics, and forensic data recovery — operating entirely on-device.</p>
+  <p class="hero-sub">A professional-grade Android platform combining real-time security monitoring, deep performance analytics, and forensic data recovery, operating entirely on-device.</p>
   <div class="hero-actions">
     <a href="#download" class="btn btn-primary">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -115,9 +131,6 @@
       No advertising
     </span>
   </div>
-
-  <!-- Smooth wave silhouette flowing into the next section's --mist background.
-       preserveAspectRatio="none" lets the SVG stretch full-width edge to edge. -->
   <svg class="hero-wave" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0,140 C240,60 480,200 720,110 C960,30 1200,180 1440,90 L1440,200 L0,200 Z"/>
   </svg>
@@ -125,7 +138,6 @@
 
 <!-- FEATURES -->
 <section id="features">
-  <!-- Subtle palette: blue + violet drift overlapping in the upper corners. -->
   <div class="orb-layer" aria-hidden="true">
     <span class="orb orb-blue orb-1"></span>
     <span class="orb orb-violet orb-4"></span>
@@ -136,11 +148,9 @@
       <h2 class="section-title reveal d1">Six modules. <em>One platform.</em></h2>
       <p class="section-sub reveal d2">Purpose-built tools that give you complete visibility into your Android device's health, security posture, and recoverable data.</p>
     </div>
-    <!-- The grid itself is the reveal target; children stagger via :nth-child. -->
     <div class="features-grid reveal">
       <article class="feat-card">
         <div class="feat-icon">
-          <!-- shield-check -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
           </svg>
@@ -151,7 +161,6 @@
 
       <article class="feat-card">
         <div class="feat-icon">
-          <!-- thermometer -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
           </svg>
@@ -162,7 +171,6 @@
 
       <article class="feat-card">
         <div class="feat-icon">
-          <!-- battery-charging -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19"/><line x1="23" y1="13" x2="23" y2="11"/><polyline points="11 6 7 12 13 12 9 18"/>
           </svg>
@@ -173,7 +181,6 @@
 
       <article class="feat-card">
         <div class="feat-icon">
-          <!-- database / hard-drive -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>
           </svg>
@@ -184,7 +191,6 @@
 
       <article class="feat-card">
         <div class="feat-icon">
-          <!-- lock -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
@@ -195,7 +201,6 @@
 
       <article class="feat-card">
         <div class="feat-icon">
-          <!-- activity / gauge -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
@@ -207,9 +212,8 @@
   </div>
 </section>
 
-<!-- SPOTLIGHT — alternating image + copy rows. Inspired by deviceinfo.app's feature-one/feature-two layout. -->
+<!-- SPOTLIGHT -->
 <section id="spotlight">
-  <!-- Soft cyan + teal palette overlap behind the spotlight rows. -->
   <div class="orb-layer" aria-hidden="true">
     <span class="orb orb-cyan orb-1"></span>
     <span class="orb orb-teal orb-2"></span>
@@ -222,7 +226,7 @@
       <p class="section-sub reveal d2">Each module is purpose-built and information-dense. No dark patterns, no upsells, nothing fighting for your attention.</p>
     </div>
 
-    <!-- Row 1: System Health (DUAL — Dashboard front, Memory back) -->
+    <!-- Row 1: System Health -->
     <div class="spotlight-row">
       <div class="spotlight-img spotlight-img--pair">
         <div class="phone-frame phone-back">
@@ -243,7 +247,7 @@
       <div class="spotlight-copy">
         <span class="spotlight-eyebrow">System health</span>
         <h3 class="spotlight-title">A dashboard built for <em>clarity</em></h3>
-        <p class="spotlight-desc">Live battery, storage, CPU, and thermal metrics anchor a single readable view — with hardware-grade memory diagnostics one tap away showing used, active, and kernel allocation in real time.</p>
+        <p class="spotlight-desc">Live battery, storage, CPU, and thermal metrics anchor a single readable view, with hardware-grade memory diagnostics one tap away showing used, active, and kernel allocation in real time.</p>
         <ul class="spotlight-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Battery, storage, and CPU temp at a glance</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Memory bandwidth, zRAM, and thrashing health</li>
@@ -252,7 +256,7 @@
       </div>
     </div>
 
-    <!-- Row 2: Storage Intelligence (SOLO, image right) -->
+    <!-- Row 2: Storage Intelligence -->
     <div class="spotlight-row reverse">
       <div class="spotlight-img">
         <picture>
@@ -273,7 +277,7 @@
       </div>
     </div>
 
-    <!-- Row 3: Battery & Charging (DUAL — Battery front, Live Charging back) -->
+    <!-- Row 3: Battery & Charging -->
     <div class="spotlight-row">
       <div class="spotlight-img spotlight-img--pair">
         <div class="phone-frame phone-back">
@@ -294,7 +298,7 @@
       <div class="spotlight-copy">
         <span class="spotlight-eyebrow">Battery &amp; charging</span>
         <h3 class="spotlight-title">Battery health, in <em>forensic detail</em></h3>
-        <p class="spotlight-desc">Track capacity degradation against the original hardware design, count every charge cycle, and watch live charging analytics surface the actual protocol your charger is negotiating — at the millisecond.</p>
+        <p class="spotlight-desc">Track capacity degradation against the original hardware design, count every charge cycle, and watch live charging analytics surface the actual protocol your charger is negotiating at the millisecond.</p>
         <ul class="spotlight-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>State of Health: capacity vs. original design</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Charging protocol detection (USB / PD / QC)</li>
@@ -303,7 +307,7 @@
       </div>
     </div>
 
-    <!-- Row 4: Thermal & Power (DUAL, image right — Thermals front, Power Draw back) -->
+    <!-- Row 4: Thermal & Power -->
     <div class="spotlight-row reverse">
       <div class="spotlight-img spotlight-img--pair">
         <div class="phone-frame phone-back">
@@ -324,7 +328,7 @@
       <div class="spotlight-copy">
         <span class="spotlight-eyebrow">Thermal &amp; power</span>
         <h3 class="spotlight-title">Heat tracked, <em>throttling caught</em></h3>
-        <p class="spotlight-desc">Multi-tier thermal alerts and throttling detection are paired with a per-component power-draw breakdown — so you know exactly which radio, sensor, or core is costing you the most milliamps.</p>
+        <p class="spotlight-desc">Multi-tier thermal alerts and throttling detection are paired with a per-component power-draw breakdown, so you know exactly which radio, sensor, or core is costing you the most milliamps.</p>
         <ul class="spotlight-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>CPU and battery temperature trend graphs</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Top power consumers ranked by mA &amp; share</li>
@@ -333,7 +337,7 @@
       </div>
     </div>
 
-    <!-- Row 5: Forensic Recovery (SOLO) -->
+    <!-- Row 5: Forensic Recovery -->
     <div class="spotlight-row">
       <div class="spotlight-img">
         <picture>
@@ -354,7 +358,7 @@
       </div>
     </div>
 
-    <!-- Row 6: Privacy & App Forensics (DUAL, image right — Privacy front, Deep App back) -->
+    <!-- Row 6: Privacy & App Forensics -->
     <div class="spotlight-row reverse">
       <div class="spotlight-img spotlight-img--pair">
         <div class="phone-frame phone-back">
@@ -375,7 +379,7 @@
       <div class="spotlight-copy">
         <span class="spotlight-eyebrow">Privacy &amp; app audit</span>
         <h3 class="spotlight-title">Permissions you can <em>actually see</em></h3>
-        <p class="spotlight-desc">Inspect which apps hold camera, microphone, location, and contact permissions — and dive deeper to see total size, components, network usage, and identity provenance for any app on the device.</p>
+        <p class="spotlight-desc">Inspect which apps hold camera, microphone, location, and contact permissions, and dive deeper to see total size, components, network usage, and identity provenance for any app on the device.</p>
         <ul class="spotlight-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Per-app permission timeline with timestamps</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Activity, foreground time, WiFi &amp; mobile data per app</li>
@@ -388,7 +392,6 @@
 
 <!-- USE CASES -->
 <section id="use-cases">
-  <!-- Blue + violet palette behind the team cards. -->
   <div class="orb-layer" aria-hidden="true">
     <span class="orb orb-blue orb-4"></span>
     <span class="orb orb-violet orb-3"></span>
@@ -405,7 +408,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3 class="use-title">IT & Security Teams</h3>
-        <p class="use-desc">Audit corporate Android devices for permission leakage, unexpected processes, and degraded battery health — without backhauling data to a third-party MDM cloud.</p>
+        <p class="use-desc">Audit corporate Android devices for permission leakage, unexpected processes, and degraded battery health, without backhauling data to a third-party MDM cloud.</p>
       </article>
       <article class="use-card">
         <div class="feat-icon">
@@ -419,15 +422,14 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
         <h3 class="use-title">Privacy-Focused Users</h3>
-        <p class="use-desc">Understand exactly what your device is doing — which apps are accessing what, when, and how often — with no data ever leaving your phone.</p>
+        <p class="use-desc">Understand exactly what your device is doing, which apps are accessing what, when, and how often, with no data ever leaving your phone.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- FAQ — collapsible question/answer pairs. Honest answers only. -->
+<!-- FAQ -->
 <section id="faq">
-  <!-- Cool soft palette behind the FAQ cards. -->
   <div class="orb-layer" aria-hidden="true">
     <span class="orb orb-cyan orb-2"></span>
     <span class="orb orb-blue orb-3"></span>
@@ -440,11 +442,9 @@
     </div>
 
     <div class="faq-list">
-      <!-- Each item is a button + answer-wrap. JS toggles [data-open] on the
-           item to drive the CSS grid-template-rows animation. -->
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">Does The Guard send any data off my device?</button>
-        <div class="faq-answer-wrap"><div class="faq-answer">No. The app has no backend, no analytics SDK, no crash-reporting service, and no telemetry of any kind. You can verify this by inspecting your device's outbound network traffic while the app is running — there are no calls to our infrastructure, because we don't operate any.</div></div>
+        <div class="faq-answer-wrap"><div class="faq-answer">No. The app has no backend, no analytics SDK, no crash-reporting service, and no telemetry of any kind. You can verify this by inspecting your device's outbound network traffic while the app is running; there are no calls to our infrastructure, because we don't operate any.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">Do I need to create an account?</button>
@@ -460,7 +460,7 @@
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">What Android versions are supported?</button>
-        <div class="faq-answer-wrap"><div class="faq-answer">The Guard supports Android 8.0 (Oreo) and later. A handful of advanced forensic features — selective re-carving and drive-health stats over OTG — require Android 10+ for the underlying USB and storage APIs.</div></div>
+        <div class="faq-answer-wrap"><div class="faq-answer">The Guard supports Android 8.0 (Oreo) and later. A handful of advanced forensic features, selective re-carving and drive-health stats over OTG, require Android 10+ for the underlying USB and storage APIs.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">Is the app free? Will there be a paid tier?</button>
@@ -476,7 +476,6 @@
 
 <!-- DOWNLOAD -->
 <section id="download">
-  <!-- Glowing palette inside the dark CTA. -->
   <div class="orb-layer" aria-hidden="true">
     <span class="orb orb-blue orb-1"></span>
     <span class="orb orb-teal orb-2"></span>
@@ -497,7 +496,6 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <!-- Subtle blue wash behind the contact grid. -->
   <div class="orb-layer" aria-hidden="true">
     <span class="orb orb-cyan orb-4"></span>
   </div>
@@ -506,7 +504,7 @@
       <div class="contact-info">
         <span class="section-tag reveal">Contact</span>
         <h2 class="section-title reveal d1" style="text-align:left;">We'd love to <em>hear from you</em></h2>
-        <p class="reveal d2">Questions, partnership inquiries, bug reports, or feature requests — every message reaches a real human, and we read every one.</p>
+        <p class="reveal d2">Questions, partnership inquiries, bug reports, or feature requests. Every message reaches a real human, and we read every one.</p>
         <p class="reveal d2">For corporate licensing, deployment guidance, or feature requests on behalf of a team, please reach out via email and we'll respond within two business days.</p>
       </div>
       <div class="contact-cards">
@@ -552,7 +550,7 @@
         <img class="mark" src="favicon.svg" alt="" aria-hidden="true">
         The Guard
       </a>
-      <p class="footer-tagline">Professional-grade Android device security, performance analytics, and forensic data recovery — operating entirely on-device.</p>
+      <p class="footer-tagline">Professional-grade Android device security, performance analytics, and forensic data recovery, operating entirely on-device.</p>
     </div>
     <div class="footer-col">
       <h3>Product</h3>
@@ -603,9 +601,6 @@
   }));
 
   // -------- Scroll-reveal --------
-  // Observe both individual .reveal elements AND grid/row containers that
-  // drive staggered child animations via .visible (.features-grid,
-  // .use-grid, .principles, .spotlight-row).
   const revealTargets = document.querySelectorAll(
     '.reveal, .features-grid, .use-grid, .principles, .spotlight-row'
   );
@@ -619,9 +614,7 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   revealTargets.forEach(el => io.observe(el));
 
-  // -------- FAQ smooth accordion --------
-  // Toggling [data-open] drives the CSS grid-template-rows transition
-  // on .faq-answer-wrap. aria-expanded is mirrored for screen readers.
+  // -------- FAQ accordion --------
   document.querySelectorAll('.faq-item').forEach(item => {
     const btn = item.querySelector('.faq-q');
     if (!btn) return;
