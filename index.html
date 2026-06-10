@@ -481,12 +481,43 @@
       <span id="download-label">Download for Android</span>
     </a>
     <p class="download-note">Direct download from GitHub · No account needed · Android 8.0 (Oreo) or later</p>
-    <div style="margin-top:18px;font-size:0.85rem;color:var(--text-muted, #8899bb);word-break:break-all;font-family:monospace;">
-      <strong>SHA-256:</strong> <span id="apk-sha256">Loading…</span>
+    <div class="verify-card">
+      <div class="verify-header">
+        <svg class="verify-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
+        <span>Verify your download</span>
+      </div>
+      <div class="verify-row">
+        <span class="verify-label">SHA-256</span>
+        <code class="verify-hash" id="apk-sha256">Loading…</code>
+        <button class="verify-copy" id="copy-sha" aria-label="Copy SHA-256 to clipboard" title="Copy to clipboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </div>
+      <div class="verify-divider"></div>
+      <div class="verify-btn-wrap" id="verify-btn-wrap">
+        <button class="verify-btn" id="verify-apk-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          Verify APK file
+        </button>
+        <input type="file" accept=".apk" class="verify-file-input" id="apk-file-input">
+        <div id="verify-result" class="verify-result" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          <span id="verify-msg"></span>
+        </div>
+      </div>
     </div>
-    <p style="margin-top:6px;font-size:0.8rem;color:var(--text-muted, #667799);">
-      Verify: <code style="background:rgba(255,255,255,0.06);padding:2px 6px;border-radius:4px;">sha256sum -c TheGuard-release-*.apk.sha256</code>
-    </p>
   </div>
 </section>
 
@@ -638,16 +669,77 @@
         label.textContent = 'Download for Android' + (ver ? ' (' + ver + ')' : '');
       }
       if (shaAsset) {
-        const shaResp = await fetch(shaAsset.browser_download_url);
+        // Use raw.githubusercontent.com to avoid CORS redirect from releases CDN
+        const rawUrl = `https://raw.githubusercontent.com/theguardapp/theguardapp.github.io/${release.tag_name}/${shaAsset.name}`;
+        const shaResp = await fetch(rawUrl);
         const shaText = await shaResp.text();
         const match = shaText.match(/^([a-f0-9]{64})/i);
         if (match) document.getElementById('apk-sha256').textContent = match[1];
       }
     } catch (e) {
-      // Fallback — leave "Loading…" visible
+      // Fallback
       document.getElementById('apk-sha256').textContent = 'Unavailable';
     }
   })();
+
+  // -------- Copy SHA-256 to clipboard --------
+  document.getElementById('copy-sha')?.addEventListener('click', async () => {
+    const text = document.getElementById('apk-sha256').textContent;
+    if (!text || text === 'Loading…' || text === 'Unavailable') return;
+    try {
+      await navigator.clipboard.writeText(text);
+      const btn = document.getElementById('copy-sha');
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+    } catch {}
+  });
+
+  // -------- Auto-verify APK via file picker + crypto.subtle --------
+  const verifyBtn = document.getElementById('verify-apk-btn');
+  const fileInput = document.getElementById('apk-file-input');
+  const resultEl = document.getElementById('verify-result');
+  const msgEl = document.getElementById('verify-msg');
+
+  verifyBtn?.addEventListener('click', () => fileInput?.click());
+
+  fileInput?.addEventListener('change', async function () {
+    const file = this.files?.[0];
+    if (!file) return;
+
+    resultEl.hidden = false;
+    resultEl.className = 'verify-result pending';
+    msgEl.textContent = 'Computing SHA-256…';
+
+    try {
+      const buffer = await file.arrayBuffer();
+      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const computedHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+      const expectedHash = document.getElementById('apk-sha256').textContent;
+      if (!expectedHash || expectedHash === 'Loading…' || expectedHash === 'Unavailable') {
+        resultEl.className = 'verify-result failure';
+        msgEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Expected SHA-256 not yet loaded. Try again in a moment.';
+        return;
+      }
+
+      if (computedHash === expectedHash) {
+        resultEl.className = 'verify-result success';
+        msgEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> ✓ Verified — SHA-256 matches. The APK is authentic.';
+      } else {
+        resultEl.className = 'verify-result failure';
+        msgEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> ✗ Mismatch — the file does NOT match the expected SHA-256. Do not install.';
+      }
+    } catch (err) {
+      resultEl.className = 'verify-result failure';
+      msgEl.textContent = 'Error computing hash: ' + err.message;
+    }
+
+    // Reset so the same file can be re-selected
+    this.value = '';
+  });
 
   // -------- Footer year --------
   document.getElementById('year').textContent = new Date().getFullYear();

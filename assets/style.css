@@ -351,6 +351,133 @@ section{padding:110px 5%}
 .download-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 40px;line-height:1.7}
 .download-note{margin-top:22px;font-size:13px;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:10px}
 
+/* Verify card */
+.verify-card{
+  margin:28px auto 0;
+  max-width:600px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  padding:24px 28px;
+  text-align:left;
+}
+.verify-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  font-weight:600;
+  color:rgba(255,255,255,.65);
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+.verify-icon{width:16px;height:16px;color:#FF8C00;flex-shrink:0}
+.verify-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+.verify-row:last-of-type{margin-bottom:0}
+.verify-label{
+  font-size:11px;
+  font-weight:600;
+  color:rgba(255,255,255,.5);
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  white-space:nowrap;
+  min-width:70px;
+}
+.verify-hash{
+  font-family:monospace;
+  font-size:12px;
+  color:rgba(255,255,255,.8);
+  word-break:break-all;
+  line-height:1.6;
+  background:rgba(0,0,0,.25);
+  padding:6px 10px;
+  border-radius:8px;
+  flex:1;
+}
+.verify-cmd{
+  font-family:monospace;
+  font-size:12px;
+  color:rgba(255,255,255,.7);
+  background:rgba(0,0,0,.25);
+  padding:6px 10px;
+  border-radius:8px;
+  flex:1;
+  white-space:nowrap;
+  overflow-x:auto;
+}
+.verify-copy{
+  flex-shrink:0;
+  width:32px;height:32px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.12);
+  background:transparent;
+  color:rgba(255,255,255,.6);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.verify-copy:hover{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.25)}
+.verify-copy.copied{color:#4CAF50;border-color:#4CAF50}
+.verify-copy svg{width:14px;height:14px}
+.verify-divider{
+  height:1px;
+  background:rgba(255,255,255,.08);
+  margin:14px 0;
+}
+.verify-note{
+  font-size:12px;
+  color:rgba(255,255,255,.45);
+  line-height:1.6;
+  margin-top:14px;
+}
+.verify-note code{
+  background:rgba(255,255,255,.08);
+  padding:1px 5px;
+  border-radius:4px;
+  font-size:11px;
+}
+.verify-btn-wrap{margin-top:18px}
+.verify-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 22px;
+  border-radius:var(--r-lg);
+  font-size:13px;
+  font-weight:600;
+  text-decoration:none;
+  transition:transform .2s,background .2s;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  cursor:pointer;
+  font-family:inherit;
+}
+.verify-btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.12)}
+.verify-result{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:600;
+  padding:8px 16px;
+  border-radius:8px;
+  margin-top:12px;
+}
+.verify-result.success{color:#4CAF50;background:rgba(76,175,80,.1)}
+.verify-result.failure{color:#f44336;background:rgba(244,67,54,.1)}
+.verify-result.pending{color:rgba(255,255,255,.6);background:rgba(255,255,255,.05)}
+.verify-result svg{width:16px;height:16px;flex-shrink:0}
+.verify-file-input{display:none}
+
 /* CONTACT */
 #contact{background:var(--white)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
@@ -603,6 +730,13 @@ section > *:not(.orb-layer):not(.hero-wave){position:relative;z-index:1}
   .footer-col h3{text-align:left}
   .footer-col ul{align-items:flex-start}
   .footer-bottom{flex-direction:column;text-align:center}
+
+  /* Verify card on phones */
+  .verify-card{padding:18px 16px;border-radius:12px}
+  .verify-row{flex-wrap:wrap;gap:6px}
+  .verify-label{min-width:auto;font-size:10px}
+  .verify-hash{font-size:11px;padding:5px 8px;word-break:break-all}
+  .verify-btn{width:100%;justify-content:center}
 
   /* Hero polish for phones */
   #hero{padding:108px 4% 200px}
