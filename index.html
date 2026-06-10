@@ -474,18 +474,18 @@
     <span class="section-tag" style="color:var(--light-blue);display:inline-block;margin-bottom:18px;">Get started</span>
     <h2 class="download-title">Take <em>control</em> of your device</h2>
     <p class="download-sub">Free to install. No account required. Works fully offline. Set up in under thirty seconds.</p>
-    <a href="https://github.com/theguardapp/theguardapp.github.io/releases/latest/download/TheGuard-release-v1.0.apk" class="btn btn-primary" id="download-cta">
+    <a href="#" class="btn btn-primary" id="download-cta">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
       </svg>
-      Download for Android (v1.0)
+      <span id="download-label">Download for Android</span>
     </a>
     <p class="download-note">Direct download from GitHub · No account needed · Android 8.0 (Oreo) or later</p>
     <div style="margin-top:18px;font-size:0.85rem;color:var(--text-muted, #8899bb);word-break:break-all;font-family:monospace;">
-      <strong>SHA-256:</strong> <span id="apk-sha256">df3d9ac37a2196166f42c73cd4a26f2ad34c7b64335fa59c8eeac4f633924255</span>
+      <strong>SHA-256:</strong> <span id="apk-sha256">Loading…</span>
     </div>
     <p style="margin-top:6px;font-size:0.8rem;color:var(--text-muted, #667799);">
-      Verify: <code style="background:rgba(255,255,255,0.06);padding:2px 6px;border-radius:4px;">sha256sum TheGuard-release-v1.0.apk</code>
+      Verify: <code style="background:rgba(255,255,255,0.06);padding:2px 6px;border-radius:4px;">sha256sum -c TheGuard-release-*.apk.sha256</code>
     </p>
   </div>
 </section>
@@ -619,6 +619,35 @@
       btn.setAttribute('aria-expanded', String(open));
     });
   });
+
+  // -------- Dynamically fetch latest release info --------
+  (async function loadRelease() {
+    try {
+      const r = await fetch('https://api.github.com/repos/theguardapp/theguardapp.github.io/releases/latest');
+      const release = await r.json();
+      const assets = release.assets || [];
+      let apkAsset = null, shaAsset = null;
+      for (const a of assets) {
+        if (a.name.endsWith('.apk') && !a.name.endsWith('.sha256')) apkAsset = a;
+        if (a.name.endsWith('.sha256')) shaAsset = a;
+      }
+      if (apkAsset) {
+        document.getElementById('download-cta').href = apkAsset.browser_download_url;
+        const label = document.getElementById('download-label');
+        const ver = release.tag_name || '';
+        label.textContent = 'Download for Android' + (ver ? ' (' + ver + ')' : '');
+      }
+      if (shaAsset) {
+        const shaResp = await fetch(shaAsset.browser_download_url);
+        const shaText = await shaResp.text();
+        const match = shaText.match(/^([a-f0-9]{64})/i);
+        if (match) document.getElementById('apk-sha256').textContent = match[1];
+      }
+    } catch (e) {
+      // Fallback — leave "Loading…" visible
+      document.getElementById('apk-sha256').textContent = 'Unavailable';
+    }
+  })();
 
   // -------- Footer year --------
   document.getElementById('year').textContent = new Date().getFullYear();
