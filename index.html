@@ -663,7 +663,15 @@
         if (a.name.endsWith('.sha256')) shaAsset = a;
       }
       if (apkAsset) {
-        document.getElementById('download-cta').href = apkAsset.browser_download_url;
+        // Use the direct download URL with /releases/download/ (no extra redirect)
+        const tag = release.tag_name || 'latest';
+        const directUrl = `https://github.com/theguardapp/theguardapp.github.io/releases/download/${tag}/${apkAsset.name}`;
+        const cta = document.getElementById('download-cta');
+        cta.href = directUrl;
+        // Add download attribute and target for mobile browsers
+        cta.setAttribute('download', apkAsset.name);
+        cta.setAttribute('target', '_blank');
+        cta.setAttribute('rel', 'noreferrer noopener');
         const label = document.getElementById('download-label');
         const ver = release.tag_name || '';
         label.textContent = 'Download for Android' + (ver ? ' (' + ver + ')' : '');
