@@ -668,13 +668,10 @@
         const ver = release.tag_name || '';
         label.textContent = 'Download for Android' + (ver ? ' (' + ver + ')' : '');
       }
-      if (shaAsset) {
-        // Use raw.githubusercontent.com to avoid CORS redirect from releases CDN
-        const rawUrl = `https://raw.githubusercontent.com/theguardapp/theguardapp.github.io/${release.tag_name}/${shaAsset.name}`;
-        const shaResp = await fetch(rawUrl);
-        const shaText = await shaResp.text();
-        const match = shaText.match(/^([a-f0-9]{64})/i);
-        if (match) document.getElementById('apk-sha256').textContent = match[1];
+      // The GitHub API returns the SHA-256 digest directly on the APK asset
+      if (apkAsset && apkAsset.digest) {
+        const shaMatch = apkAsset.digest.match(/sha256:([a-f0-9]{64})/i);
+        if (shaMatch) document.getElementById('apk-sha256').textContent = shaMatch[1];
       }
     } catch (e) {
       // Fallback
