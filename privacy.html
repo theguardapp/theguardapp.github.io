@@ -28,6 +28,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
+<style>
+.prose-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(0,0,0,.15);
+  background: #fff;
+  color: #1a1a2e;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .2s, color .2s, box-shadow .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+.prose-btn:hover { background: #f0f0f0; box-shadow: 0 4px 12px rgba(0,0,0,.18); }
+
+/* Print styles */
+@media print {
+  nav, footer, .prose-actions, .page-hero, .orb-layer { display: none !important; }
+  body, .prose { background: #fff !important; color: #000 !important; }
+  .print-letter-header, .print-letter-footer { display: block !important; }
+  .prose a { color: #000; text-decoration: underline; }
+}
+.print-letter-header {
+  display: none;
+  font-family: serif;
+  font-size: 13pt;
+  line-height: 1.8;
+  margin-bottom: 32pt;
+}
+.print-letter-footer {
+  display: none;
+  font-family: serif;
+  font-size: 13pt;
+  line-height: 1.8;
+  margin-top: 32pt;
+  border-top: 1px solid #ccc;
+  padding-top: 16pt;
+}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -83,6 +126,31 @@
 </section>
 
 <!-- PROSE -->
+<div class="prose-actions" style="position:fixed;top:72px;right:24px;z-index:999;display:flex;gap:10px;">
+  <button onclick="window.print()" class="prose-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
+    </svg>
+    Print
+  </button>
+  <button onclick="(async()=>{ const el=document.querySelector('.prose'); const text=el.innerText; const enc=new TextEncoder(); const buf=await crypto.subtle.digest('SHA-256',enc.encode(text)); const hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''); const now=new Date(); const date=now.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); const signed='The Guard\ntheguardapp@proton.me\nhttps://theguardapp.github.io\n\n'+date+'\n\nTo Whom It May Concern\n\nSubject: Privacy Policy & Terms of Use\n\n'+text+'\n\nYours faithfully,\nThe Guard\n\nDocument SHA-256: '+hash+'\nVerify at: https://theguardapp.github.io/privacy.html'; await navigator.clipboard.writeText(signed); this.lastChild.nodeValue=' Copied!'; setTimeout(()=>{ this.lastChild.nodeValue=' Copy'; },2000); })()" class="prose-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+    </svg>
+    Copy
+  </button>
+</div>
+<div class="print-letter-header">
+  <strong>The Guard</strong><br>
+  theguardapp@proton.me<br>
+  https://theguardapp.github.io<br>
+  <br>
+  <span id="print-date"></span><br>
+  <br>
+  To Whom It May Concern<br>
+  <br>
+  <strong>Subject: Privacy Policy &amp; Terms of Use</strong>
+</div>
 <article class="prose">
   <p class="meta"><strong>Last updated:</strong> June 2026. This policy covers The Guard mobile application and the website at theguardapp.github.io.</p>
 
@@ -149,6 +217,14 @@
   <h3>7. Updates to these terms</h3>
   <p>We may update these terms from time to time. The "Last updated" date at the top of this page reflects the most recent revision. Continued use of the app after a revision constitutes acceptance of the updated terms.</p>
 </article>
+<div class="print-letter-footer">
+  Yours faithfully,<br>
+  <br>
+  <strong>The Guard</strong><br>
+  <br>
+  <span id="print-hash">Document SHA-256: computing...</span><br>
+  Verify at: https://theguardapp.github.io/privacy.html
+</div>
 
 </main>
 
@@ -212,6 +288,19 @@
 
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Print date
+  const now = new Date();
+  document.getElementById('print-date').textContent = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  // Print hash — compute once on load
+  (async () => {
+    const text = document.querySelector('.prose').innerText;
+    const enc = new TextEncoder();
+    const buf = await crypto.subtle.digest('SHA-256', enc.encode(text));
+    const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    document.getElementById('print-hash').textContent = 'Document SHA-256: ' + hash;
+  })();
 </script>
 
 </body>
