@@ -50,21 +50,61 @@
 /* Print styles */
 @media print {
   nav, footer, .prose-actions, .page-hero, .orb-layer { display: none !important; }
-  body, .prose { background: #fff !important; color: #000 !important; }
+  body, .prose { background: #fff !important; color: #000 !important; font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.6; }
   .print-letter-header, .print-letter-footer { display: block !important; }
   .prose a { color: #000; text-decoration: underline; }
+  .print-watermark { display: block !important; }
 }
-.print-letter-header {
+.print-watermark {
   display: none;
-  font-family: serif;
-  font-size: 13pt;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+.print-watermark span {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 80pt;
+  font-family: 'Times New Roman', serif;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.04);
+  white-space: nowrap;
+  letter-spacing: 12pt;
+  text-transform: uppercase;
+  user-select: none;
+}
+.print-letter-header { display: none; margin-bottom: 24pt; }
+.print-sender {
+  text-align: left;
+  font-family: 'Times New Roman', serif;
+  font-size: 12pt;
   line-height: 1.8;
-  margin-bottom: 32pt;
+  margin-bottom: 24pt;
+}
+.print-recipient {
+  text-align: left;
+  font-family: 'Times New Roman', serif;
+  font-size: 12pt;
+  margin-bottom: 16pt;
+}
+.print-subject {
+  text-align: left;
+  font-family: 'Times New Roman', serif;
+  font-size: 12pt;
+  margin-bottom: 16pt;
+}
+.print-subject span {
+  border-bottom: 2px solid #FFD700;
+  padding-bottom: 2px;
 }
 .print-letter-footer {
   display: none;
-  font-family: serif;
-  font-size: 13pt;
+  font-family: 'Times New Roman', serif;
+  font-size: 12pt;
   line-height: 1.8;
   margin-top: 32pt;
   border-top: 1px solid #ccc;
@@ -133,23 +173,28 @@
     </svg>
     Print
   </button>
-  <button onclick="(async()=>{ const el=document.querySelector('.prose'); const text=el.innerText; const enc=new TextEncoder(); const buf=await crypto.subtle.digest('SHA-256',enc.encode(text)); const hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''); const now=new Date(); const date=now.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); const signed='The Guard\ntheguardapp@proton.me\nhttps://theguardapp.github.io\n\n'+date+'\n\nTo Whom It May Concern\n\nSubject: Privacy Policy & Terms of Use\n\n'+text+'\n\nYours faithfully,\nThe Guard\n\nDocument SHA-256: '+hash+'\nVerify at: https://theguardapp.github.io/privacy.html'; await navigator.clipboard.writeText(signed); this.lastChild.nodeValue=' Copied!'; setTimeout(()=>{ this.lastChild.nodeValue=' Copy'; },2000); })()" class="prose-btn">
+  <button onclick="(async()=>{ const el=document.querySelector('.prose'); const text=el.innerText; const enc=new TextEncoder(); const buf=await crypto.subtle.digest('SHA-256',enc.encode(text)); const hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''); const now=new Date(); const date=now.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); const signed='                                          The Guard\n                                          theguardapp@proton.me\n                                          https://theguardapp.github.io\n\n                                          '+date+'\n\nTo Whom It May Concern\n\nSubject: Privacy Policy & Terms of Use\n_______________________________\n\n'+text+'\n\nYours faithfully,\n\nThe Guard\n\nDocument SHA-256: '+hash+'\nVerify at: https://theguardapp.github.io/privacy.html'; await navigator.clipboard.writeText(signed); this.lastChild.nodeValue=' Copied!'; setTimeout(()=>{ this.lastChild.nodeValue=' Copy'; },2000); })()" class="prose-btn">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
     </svg>
     Copy
   </button>
 </div>
+<div class="print-watermark"><span>THE GUARD</span></div>
 <div class="print-letter-header">
-  <strong>The Guard</strong><br>
-  theguardapp@proton.me<br>
-  https://theguardapp.github.io<br>
-  <br>
-  <span id="print-date"></span><br>
-  <br>
-  To Whom It May Concern<br>
-  <br>
-  <strong>Subject: Privacy Policy &amp; Terms of Use</strong>
+  <div class="print-sender">
+    <strong>The Guard</strong><br>
+    theguardapp@proton.me<br>
+    https://theguardapp.github.io<br>
+    <br>
+    <span id="print-date"></span>
+  </div>
+  <div class="print-recipient">
+    To Whom It May Concern
+  </div>
+  <div class="print-subject">
+    <span><strong>Subject: Privacy Policy &amp; Terms of Use</strong></span>
+  </div>
 </div>
 <article class="prose">
   <p class="meta"><strong>Last updated:</strong> June 2026. This policy covers The Guard mobile application and the website at theguardapp.github.io.</p>
