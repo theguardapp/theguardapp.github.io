@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Open Graph / Twitter Card share image for The Guard. 1200×630 — the
+  ratio every major social platform crops to. Visual language matches
+  the home-page hero: PremiumDarkGradient base, drifting palette orbs,
+  Cormorant Garamond display title with a gradient-italic accent word,
+  and a forensic-style status pill. Rendered to PNG via headless Chrome.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Base PremiumDarkGradient (#1A1A2E → #12121A → #0A0A0F).
+         Direction tilted 160° to mirror the CSS hero. -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0%"  stop-color="#1A1A2E"/>
+      <stop offset="55%" stop-color="#12121A"/>
+      <stop offset="100%" stop-color="#0A0A0F"/>
+    </linearGradient>
+
+    <!-- Atmospheric glows: blue (top-left), teal (bottom-right), violet (center). -->
+    <radialGradient id="glowBlue" cx="0.25" cy="0.30" r="0.55">
+      <stop offset="0%"  stop-color="#42A5F5" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#42A5F5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowTeal" cx="0.82" cy="0.78" r="0.55">
+      <stop offset="0%"  stop-color="#1E9FA4" stop-opacity="0.26"/>
+      <stop offset="60%" stop-color="#1E9FA4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowViolet" cx="0.55" cy="0.55" r="0.45">
+      <stop offset="0%"  stop-color="#8B5CF6" stop-opacity="0.18"/>
+      <stop offset="65%" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Italic-accent gradient applied to "guardian" (matches hero <em>). -->
+    <linearGradient id="accentText" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#42A5F5"/>
+      <stop offset="100%" stop-color="#1E9FA4"/>
+    </linearGradient>
+
+    <!-- Subtle drop shadow for the shield mark. -->
+    <filter id="markShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+      <feOffset dx="0" dy="8" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Adaptive-icon clip-path in the favicon's own 108×108 space —
+         the group it's applied to scales the whole thing up. -->
+    <clipPath id="markMask" clipPathUnits="userSpaceOnUse">
+      <rect width="108" height="108" rx="24" ry="24"/>
+    </clipPath>
+  </defs>
+
+  <!-- 1. Base gradient. -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- 2. Atmospheric glows stacked on top. -->
+  <rect width="1200" height="630" fill="url(#glowBlue)"/>
+  <rect width="1200" height="630" fill="url(#glowTeal)"/>
+  <rect width="1200" height="630" fill="url(#glowViolet)"/>
+
+  <!-- 3. Orb particles — soft palette circles for depth. SVG has no
+       blur-blend like CSS, so we approximate with low-opacity fills. -->
+  <g opacity="0.55">
+    <circle cx="180"  cy="120"  r="140" fill="#42A5F5" opacity="0.22"/>
+    <circle cx="1080" cy="560"  r="170" fill="#1E9FA4" opacity="0.20"/>
+    <circle cx="950"  cy="120"  r="90"  fill="#8B5CF6" opacity="0.18"/>
+    <circle cx="320"  cy="540"  r="110" fill="#26C6DA" opacity="0.16"/>
+  </g>
+
+  <!-- 4. Shield mark — exact paths from favicon.svg (viewBox 108×108)
+       scaled 2.22× and centered vertically on the left. The drop
+       shadow is on the outer wrapper so it doesn't get clipped. -->
+  <g transform="translate(85,170)" filter="url(#markShadow)">
+    <g transform="scale(2.685)" clip-path="url(#markMask)">
+      <path fill="#2196F3" d="M0,0h108v108h-108z"/>
+      <path fill="#1565C0" d="M0,0l108,108h-108z"/>
+      <path fill="#FFFFFF" d="M54,20C54,20 24,34 24,38C24,62 36,80 54,86C72,80 84,62 84,38C84,34 54,20 54,20Z"/>
+      <path fill="#1976D2" d="M54,26C54,26 30,38 30,41C30,60 40,75 54,80C68,75 78,60 78,41C78,38 54,26 54,26Z"/>
+      <path fill="#FFFFFF" d="M54,36C50,36 46,40 46,44L46,48C44,48 42,50 42,53L42,64C42,67 44,69 47,69L61,69C64,69 66,67 66,64L66,53C66,50 64,48 62,48L62,44C62,40 58,36 54,36ZM54,40C56,40 58,42 58,44L58,48L50,48L50,44C50,42 52,40 54,40Z"/>
+      <path fill="#1976D2" d="M54,52C52,52 50,54 50,56C50,58 51,59 53,60L53,64L55,64L55,60C57,59 58,58 58,56C58,54 56,52 54,52Z"/>
+    </g>
+  </g>
+
+  <!-- 5. Forensic-style status pill above the title. The pill width
+       and the text's textLength are pinned together so it renders
+       identically across font fallbacks (JetBrains Mono isn't loaded
+       in headless Chromium — system mono is wider). -->
+  <g transform="translate(380,170)">
+    <rect x="0" y="0" width="296" height="38" rx="19" ry="19"
+          fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+    <circle cx="20" cy="19" r="4" fill="#22C55E"/>
+    <text x="36" y="24" font-family="'JetBrains Mono','SF Mono',Consolas,monospace"
+          font-size="13" letter-spacing="2" fill="rgba(255,255,255,0.7)"
+          textLength="242" lengthAdjust="spacingAndGlyphs">LOCAL-FIRST · ON-DEVICE</text>
+  </g>
+
+  <!-- 6. Display title: "Your device's silent guardian". The accent
+       word uses the blue→teal gradient (matches the hero <em>). -->
+  <g font-family="'Cormorant Garamond','Times New Roman',serif" fill="#FFFFFF">
+    <text x="380" y="290" font-size="72" font-weight="300" letter-spacing="-1.5">Your device's</text>
+    <text x="380" y="372" font-size="78" font-weight="400" font-style="italic"
+          letter-spacing="-1.5" fill="url(#accentText)">silent guardian.</text>
+  </g>
+
+  <!-- 7. Sub-tagline — Inter 24, generous tracking. -->
+  <text x="380" y="436" font-family="'Inter','Helvetica Neue',Arial,sans-serif"
+        font-size="22" font-weight="400" fill="rgba(255,255,255,0.72)"
+        letter-spacing="0.2">Real-time security · Performance analytics · Forensic recovery.</text>
+
+  <!-- 8. Wordmark + URL row at the bottom. -->
+  <g transform="translate(380,520)">
+    <text font-family="'Cormorant Garamond',serif" font-size="32" font-weight="600"
+          letter-spacing="-0.5" fill="#FFFFFF">The Guard</text>
+    <text x="170" y="0" font-family="'Inter',sans-serif" font-size="18" font-weight="500"
+          fill="rgba(255,255,255,0.5)" letter-spacing="0.5">theguardapp.github.io</text>
+  </g>
+
+  <!-- 9. Hairline accent at the very bottom — matches the site's blue→teal motif. -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#accentText)" opacity="0.85"/>
+</svg>
